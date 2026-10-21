@@ -28,7 +28,15 @@
 - Build servido con `vite preview`, ancla inicial de Contacto, apertura de GitHub y cuatro peticiones GET sin duplicados: correctos. Sin errores de JavaScript.
 - Respaldo anterior: rama local `backup/pre-responsive-2026-10-21`, commit `e912ed5`. Publicación limitada a `preview/portfolio-supabase`.
 - Pendiente de hardware: Safari/iOS y Android físicos; los toques se verificaron en emulación Chromium.
-- La comprobación visual remota requiere acceso a la sesión protegida de Vercel. El navegador automatizado redirige a Login; se distingue del resultado de las pruebas locales y del estado del build remoto.
+
+### Validación remota de la Preview
+
+- Completada el 2026-10-21 tras iniciar sesión en Vercel; se validó la versión de código publicada en `39445d9`.
+- Supabase: 3 proyectos con 5 tecnologías cada uno, 18 habilidades, 3 experiencias y 3 logros visibles en el despliegue.
+- Anchos 320, 360, 375, 390, 768, 1024 y 1920 px: sin desborde horizontal, correo recortado ni tarjetas fuera de pantalla.
+- Clic en los tres enlaces del Hero, las ocho anclas, menú móvil, Escape y foco, tema claro/oscuro y persistencia al recargar, animaciones y Volver arriba: correctos.
+- Consola remota: 0 errores y 0 advertencias. Las pruebas táctiles se realizaron previamente en emulación local; no se presenta la prueba remota de clic como una prueba en hardware físico.
+- Verificación completada sin cambios en código funcional, Supabase, RLS ni producción. Se actualiza únicamente la documentación de resultados.
 
 ## [Unreleased] — 2026-10-21
 

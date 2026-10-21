@@ -150,7 +150,7 @@ Los cambios de integración y las correcciones responsive se preparan y publican
 - Producción: [portfolioo-eta-five.vercel.app](https://portfolioo-eta-five.vercel.app/), asociada a `main`. La publicación definitiva requiere autorización de Matías.
 - Respaldo local anterior a estas correcciones: `backup/pre-responsive-2026-10-21` (`e912ed5`).
 
-En el navegador automatizado el acceso remoto a la Preview redirige al inicio de sesión de Vercel. Las pruebas funcionales anteriores corresponden a localhost y al build local. La validación visual del despliegue remoto queda pendiente mientras esa sesión no tenga acceso; el resultado del build remoto se comprueba mediante los estados del commit en GitHub.
+La validación remota de la Preview se completó el 2026-10-21 después de iniciar sesión en Vercel. Se verificaron 3 proyectos (5 tecnologías cada uno), 18 habilidades, 3 experiencias y 3 logros. En 320, 360, 375, 390, 768, 1024 y 1920 px no hubo desborde horizontal, tarjetas fuera de pantalla ni correo recortado. Los tres enlaces del Hero, las ocho anclas del menú, cierre con Escape y retorno del foco, cambio de tema, persistencia al recargar, animaciones y Volver arriba funcionaron en el despliegue. La consola remota terminó sin errores ni advertencias. La prueba remota se realizó con clic y teclado; las pruebas táctiles previas utilizaron emulación Chromium local. La revisión en dispositivos físicos permanece pendiente.
 
 ## Autor
 
