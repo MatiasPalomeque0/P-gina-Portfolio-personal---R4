@@ -144,11 +144,14 @@ Si una consulta falla, las secciones dinámicas muestran un estado de error y un
 
 Repositorio: [MatiasPalomeque0/P-gina-Portfolio-personal---R4](https://github.com/MatiasPalomeque0/P-gina-Portfolio-personal---R4).
 
-Los cambios de integración y las correcciones responsive se preparan y publican exclusivamente en `preview/portfolio-supabase`. Vercel genera el Preview mediante la integración Git existente. Las variables `VITE_SUPABASE_URL` y `VITE_SUPABASE_PUBLISHABLE_KEY` deben estar configuradas para Preview; sus valores no se documentan ni se suben al repositorio.
+La versión verificada de `preview/portfolio-supabase` (`09ef942`) se integró por fast-forward en `main` el 2026-10-21, con autorización expresa del propietario para publicar en producción. Se conserva la rama Preview. Vercel utiliza la integración Git existente: los pushes a `main` actualizan Production y los de la rama de trabajo generan Preview. Las variables `VITE_SUPABASE_URL` y `VITE_SUPABASE_PUBLISHABLE_KEY` se configuran en Vercel para cada entorno; sus valores no se documentan ni se suben al repositorio.
 
 - Preview de la rama: [portfolioo-git-preview-portfolio-supabase-pdisc.vercel.app](https://portfolioo-git-preview-portfolio-supabase-pdisc.vercel.app/).
-- Producción: [portfolioo-eta-five.vercel.app](https://portfolioo-eta-five.vercel.app/), asociada a `main`. La publicación definitiva requiere autorización de Matías.
+- Producción: [portfolioo-eta-five.vercel.app](https://portfolioo-eta-five.vercel.app/), asociada a `main` en el proyecto existente `portfolioo`.
 - Respaldo local anterior a estas correcciones: `backup/pre-responsive-2026-10-21` (`e912ed5`).
+- Respaldo de producción anterior a la integración: etiqueta `backup/production-eff6891-2026-10-21`, que conserva `eff68915653b5ea215428f0b48c1794ff3a8c867`.
+
+Antes del push se ejecutan instalación limpia, TypeScript, ESLint, build y ambas auditorías npm. La publicación se verifica contra el SHA completo de `main`, el entorno **Production – portfolioo** registrado por Vercel en GitHub y el dominio original. Las pruebas de Preview no sustituyen las pruebas sobre el dominio de producción. No se cambian las variables de Vercel, SQL, datos ni RLS durante esta operación.
 
 La validación remota de la Preview se completó el 2026-10-21 después de iniciar sesión en Vercel. Se verificaron 3 proyectos (5 tecnologías cada uno), 18 habilidades, 3 experiencias y 3 logros. En 320, 360, 375, 390, 768, 1024 y 1920 px no hubo desborde horizontal, tarjetas fuera de pantalla ni correo recortado. Los tres enlaces del Hero, las ocho anclas del menú, cierre con Escape y retorno del foco, cambio de tema, persistencia al recargar, animaciones y Volver arriba funcionaron en el despliegue. La consola remota terminó sin errores ni advertencias. La prueba remota se realizó con clic y teclado; las pruebas táctiles previas utilizaron emulación Chromium local. La revisión en dispositivos físicos permanece pendiente.
 

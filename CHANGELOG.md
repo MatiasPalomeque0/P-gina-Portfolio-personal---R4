@@ -1,5 +1,15 @@
 # Changelog
 
+## Integración en main para producción — 2026-10-21
+
+- Autorizada expresamente la publicación definitiva en el repositorio y proyecto Vercel existentes, conservando `https://portfolioo-eta-five.vercel.app/`.
+- Integrada por fast-forward la versión verificada `09ef942` de `preview/portfolio-supabase` en `main`, conservando ambos historiales y la rama Preview.
+- `origin/main` anterior: `eff68915653b5ea215428f0b48c1794ff3a8c867`, sin commits remotos adicionales fuera de la Preview.
+- Creada la etiqueta recuperable `backup/production-eff6891-2026-10-21` sobre ese commit, sin modificar respaldos previos.
+- `.env.local` excluido de Git y ausente del historial. Sin valores completos de entorno ni claves privadas en archivos versionados; cliente frontend con clave publicable.
+- El código funcional coincide con la Preview verificada. Esta publicación únicamente actualiza las notas de integración, además de trasladar a `main` los cambios existentes.
+- La aceptación del despliegue exige estado satisfactorio de Vercel para el nuevo SHA en Production y pruebas independientes sobre el dominio definitivo. No se modifican PostgreSQL, RLS, datos, claves ni variables de entorno.
+
 ## Preview responsive y controles — 2026-10-21
 
 ### Correcciones
