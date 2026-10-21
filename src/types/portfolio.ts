@@ -1,4 +1,4 @@
-export type ProjectStatus = 'Terminado' | 'En desarrollo' | 'Prototipo'
+export type ProjectStatus = 'Terminado' | 'En desarrollo' | 'Prototipo' | 'Planificado' | 'Mantenimiento'
 
 export interface Skill {
   name: string
@@ -9,13 +9,13 @@ export interface Skill {
 export interface Experience {
   period: string
   title: string
-  organization: string
-  description: string
+  organization?: string
+  description?: string
 }
 
 export interface Achievement {
   title: string
-  description: string
+  description?: string
   period?: string
 }
 
@@ -24,7 +24,7 @@ export interface Project {
   description: string
   technologies: string[]
   status: ProjectStatus
-  category: string
+  category?: string
   githubUrl?: string
   demoUrl?: string
   imageUrl?: string

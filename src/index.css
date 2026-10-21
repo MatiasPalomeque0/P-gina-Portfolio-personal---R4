@@ -624,6 +624,63 @@ h1 {
   line-height: 1.65;
 }
 
+.remote-state {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 7rem;
+  padding: 1.4rem;
+  border: 1px solid var(--line);
+  border-radius: 0.6rem;
+  background: rgba(16, 23, 34, 0.72);
+}
+
+.remote-state p,
+.remote-state h3 {
+  margin: 0;
+}
+
+.remote-state p {
+  color: var(--muted);
+  line-height: 1.6;
+}
+
+.remote-state h3 {
+  margin-bottom: 0.35rem;
+  font-size: 1rem;
+}
+
+.remote-state-loading {
+  justify-content: flex-start;
+}
+
+.remote-state-spinner {
+  width: 1.15rem;
+  height: 1.15rem;
+  flex: 0 0 auto;
+  border: 2px solid var(--line-strong);
+  border-top-color: var(--accent);
+  border-radius: 50%;
+  animation: remote-state-spin 800ms linear infinite;
+}
+
+.remote-state-error {
+  border-color: rgba(248, 113, 113, 0.45);
+}
+
+@keyframes remote-state-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .remote-state-spinner {
+    animation-duration: 1.8s;
+  }
+}
+
 .favorite-strip {
   display: flex;
   justify-content: space-between;
@@ -1118,6 +1175,11 @@ h1 {
   .projects-grid,
   .achievements-grid {
     grid-template-columns: 1fr;
+  }
+
+  .remote-state {
+    align-items: flex-start;
+    flex-direction: column;
   }
 
   .timeline {

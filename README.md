@@ -13,6 +13,8 @@ La aplicación está implementada con componentes React, navegación interna, ho
 - Vite
 - CSS propio
 - Git
+- ESLint
+- Supabase (`@supabase/supabase-js`)
 - Vercel como destino de publicación
 
 ## Secciones
@@ -56,6 +58,13 @@ npm install
 npm run dev
 ```
 
+Para comprobar calidad y tipos:
+
+```bash
+npm run lint
+npx tsc -b --pretty false
+```
+
 ## Build de producción
 
 ```bash
@@ -63,9 +72,40 @@ npm run build
 npm run preview
 ```
 
-## Base de datos
+La auditoría de dependencias se puede ejecutar con:
 
-No se incorporó base de datos porque el portfolio todavía no necesita persistencia ni panel administrativo. Si se aprueba posteriormente, se evaluará almacenar proyectos mediante una API serverless compatible con Vercel.
+```bash
+npm audit
+npm audit --omit=dev
+```
+
+La revisión técnica de la integración se encuentra en [`docs/INTEGRACION_SUPABASE.md`](docs/INTEGRACION_SUPABASE.md).
+
+## Integración con Supabase
+
+Los contenidos dinámicos se consultan desde las tablas públicas de Supabase mediante `@supabase/supabase-js` y la clave publishable del proyecto:
+
+- `proyectos` y sus relaciones con `tecnologias` mediante `proyecto_tecnologia`.
+- `habilidades` publicadas.
+- `experiencias` publicadas.
+- `logros` publicados.
+
+El perfil personal, la educación, la información de contacto y la presentación permanecen estáticos porque no forman parte de estas tablas. La lista de tecnologías favoritas también permanece estática hasta que el esquema incorpore una marca específica para ese dato.
+
+La aplicación solo ejecuta consultas `SELECT` filtradas por `publicado = true`. RLS continúa siendo responsabilidad de Supabase; no se modifican tablas ni políticas desde React.
+
+### Configuración local
+
+Crear `.env.local` en la raíz del proyecto, sin subirlo a Git:
+
+```env
+VITE_SUPABASE_URL=URL_DEL_PROYECTO
+VITE_SUPABASE_PUBLISHABLE_KEY=CLAVE_PUBLISHABLE
+```
+
+Los valores se obtienen desde **Supabase → Project Settings → API**. No usar `service_role` ni claves secretas en el navegador. `.env.local` está excluido por `.gitignore`; `.env.example` sirve como plantilla sin credenciales.
+
+Si una consulta falla, las secciones dinámicas muestran un estado de error y un botón de reintento; no utilizan automáticamente los datos estáticos como reemplazo.
 
 ## Deployment
 
@@ -73,7 +113,7 @@ La publicación en Vercel queda pendiente de conectar un repositorio GitHub real
 
 Repositorio Git: pendiente de crear y conectar.
 
-Portfolio publicado: pendiente de desplegar.
+Portfolio publicado: pendiente de una nueva configuración de despliegue con las variables de entorno de Supabase.
 
 ## Autor
 

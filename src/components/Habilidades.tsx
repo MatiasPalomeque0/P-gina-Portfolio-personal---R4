@@ -1,14 +1,18 @@
 import type { Skill } from '../types/portfolio'
-import { EmptyState } from './EmptyState'
+import type { RemoteStatus } from '../hooks/usePortfolioData'
+import { RemoteState } from './RemoteState'
 import { SectionHeading } from './SectionHeading'
 import { SectionReveal } from './SectionReveal'
 
 interface HabilidadesProps {
   skills: Skill[]
   favoriteTechnologies: string[]
+  status: RemoteStatus
+  error: string | null
+  onRetry: () => void
 }
 
-export function Habilidades({ skills, favoriteTechnologies }: HabilidadesProps) {
+export function Habilidades({ skills, favoriteTechnologies, status, error, onRetry }: HabilidadesProps) {
   return (
     <section id="habilidades" className="section-pad" aria-labelledby="skills-title">
       <div className="container">
@@ -21,7 +25,14 @@ export function Habilidades({ skills, favoriteTechnologies }: HabilidadesProps) 
           />
         </SectionReveal>
 
-        {skills.length ? (
+        <RemoteState
+          status={status}
+          error={error}
+          hasData={skills.length > 0}
+          emptyTitle="No hay habilidades publicadas"
+          emptyDescription="No hay habilidades visibles en Supabase en este momento."
+          onRetry={onRetry}
+        >
           <div className="skills-grid">
             {skills.map((skill) => (
               <article className="skill-card" key={`${skill.category}-${skill.name}`}>
@@ -31,7 +42,7 @@ export function Habilidades({ skills, favoriteTechnologies }: HabilidadesProps) 
               </article>
             ))}
           </div>
-        ) : <SectionReveal><EmptyState title="Habilidades por completar" description="Aquí aparecerán las tecnologías y herramientas que realmente dominas o estás aprendiendo." /></SectionReveal>}
+        </RemoteState>
 
         <SectionReveal className="favorite-strip">
           <div>

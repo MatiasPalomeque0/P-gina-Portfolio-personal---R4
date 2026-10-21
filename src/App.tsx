@@ -9,8 +9,9 @@ import { Logros } from './components/Logros'
 import { Navbar } from './components/Navbar'
 import { Proyectos } from './components/Proyectos'
 import { SobreMi } from './components/SobreMi'
+import { usePortfolioData } from './hooks/usePortfolioData'
 import { useActiveSection } from './hooks/useActiveSection'
-import { achievements, education, experiences, favoriteTechnologies, profile, projects, skills } from './data/portfolio'
+import { education, favoriteTechnologies, profile } from './data/portfolio'
 
 function App() {
   const sectionIds = useMemo(
@@ -18,6 +19,8 @@ function App() {
     [],
   )
   const activeSection = useActiveSection(sectionIds)
+  const portfolioData = usePortfolioData()
+  const dynamicData = portfolioData.data
 
   return (
     <div className="site-shell">
@@ -26,10 +29,31 @@ function App() {
       <main id="contenido">
         <Hero profile={profile} />
         <SobreMi profile={profile} />
-        <Habilidades skills={skills} favoriteTechnologies={favoriteTechnologies} />
-        <Proyectos projects={projects} />
-        <Experiencia experiences={experiences} />
-        <Logros achievements={achievements} />
+        <Habilidades
+          skills={dynamicData?.skills ?? []}
+          favoriteTechnologies={favoriteTechnologies}
+          status={portfolioData.status}
+          error={portfolioData.error}
+          onRetry={portfolioData.retry}
+        />
+        <Proyectos
+          projects={dynamicData?.projects ?? []}
+          status={portfolioData.status}
+          error={portfolioData.error}
+          onRetry={portfolioData.retry}
+        />
+        <Experiencia
+          experiences={dynamicData?.experiences ?? []}
+          status={portfolioData.status}
+          error={portfolioData.error}
+          onRetry={portfolioData.retry}
+        />
+        <Logros
+          achievements={dynamicData?.achievements ?? []}
+          status={portfolioData.status}
+          error={portfolioData.error}
+          onRetry={portfolioData.retry}
+        />
         <Educacion education={education} />
         <Contacto profile={profile} />
       </main>

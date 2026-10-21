@@ -1,14 +1,18 @@
 import type { Project } from '../types/portfolio'
-import { EmptyState } from './EmptyState'
 import { ProyectoCard } from './ProyectoCard'
+import { RemoteState } from './RemoteState'
 import { SectionHeading } from './SectionHeading'
 import { SectionReveal } from './SectionReveal'
+import type { RemoteStatus } from '../hooks/usePortfolioData'
 
 interface ProyectosProps {
   projects: Project[]
+  status: RemoteStatus
+  error: string | null
+  onRetry: () => void
 }
 
-export function Proyectos({ projects }: ProyectosProps) {
+export function Proyectos({ projects, status, error, onRetry }: ProyectosProps) {
   return (
     <section id="proyectos" className="section-pad section-muted" aria-labelledby="projects-title">
       <div className="container">
@@ -21,7 +25,14 @@ export function Proyectos({ projects }: ProyectosProps) {
           />
         </SectionReveal>
 
-        {projects.length ? (
+        <RemoteState
+          status={status}
+          error={error}
+          hasData={projects.length > 0}
+          emptyTitle="No hay proyectos publicados"
+          emptyDescription="No hay proyectos visibles en Supabase en este momento."
+          onRetry={onRetry}
+        >
           <div className="projects-grid">
             {projects.map((project, index) => (
               <SectionReveal key={project.title}>
@@ -29,14 +40,7 @@ export function Proyectos({ projects }: ProyectosProps) {
               </SectionReveal>
             ))}
           </div>
-        ) : (
-          <SectionReveal>
-            <EmptyState
-              title="Proyectos por incorporar"
-              description="Agregaremos entre tres y seis proyectos reales con sus capturas, tecnologías, estados y enlaces disponibles."
-            />
-          </SectionReveal>
-        )}
+        </RemoteState>
       </div>
     </section>
   )
