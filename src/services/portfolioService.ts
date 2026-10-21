@@ -114,6 +114,7 @@ export async function getSkills(): Promise<Skill[]> {
   return (data ?? []).map((skill) => ({
     name: skill.nombre,
     category: skill.categoria,
+    icon: skill.icono ?? undefined,
   }))
 }
 

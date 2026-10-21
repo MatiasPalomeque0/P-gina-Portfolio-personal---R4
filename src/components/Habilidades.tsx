@@ -3,24 +3,48 @@ import type { RemoteStatus } from '../hooks/usePortfolioData'
 import { RemoteState } from './RemoteState'
 import { SectionHeading } from './SectionHeading'
 import { SectionReveal } from './SectionReveal'
+import { SkillCategoryCard } from './SkillCategoryCard'
 
 interface HabilidadesProps {
   skills: Skill[]
-  favoriteTechnologies: string[]
   status: RemoteStatus
   error: string | null
   onRetry: () => void
 }
 
-export function Habilidades({ skills, favoriteTechnologies, status, error, onRetry }: HabilidadesProps) {
+const preferredCategoryOrder = ['Frontend', 'Backend', 'Bases de datos', 'Herramientas', 'Otros']
+
+function groupSkillsByCategory(skills: Skill[]) {
+  const groups = new Map<string, Skill[]>()
+
+  for (const skill of skills) {
+    const category = skill.category.trim() || 'Sin categoría'
+    const group = groups.get(category) ?? []
+    group.push(skill)
+    groups.set(category, group)
+  }
+
+  // Las categorías conocidas mantienen su orden y las nuevas aparecen al final
+  // según el orden de la primera habilidad recibida desde Supabase.
+  const orderedCategories = [
+    ...preferredCategoryOrder.filter((category) => groups.has(category)),
+    ...[...groups.keys()].filter((category) => !preferredCategoryOrder.includes(category)),
+  ]
+
+  return orderedCategories.map((category) => ({ category, skills: groups.get(category) ?? [] }))
+}
+
+export function Habilidades({ skills, status, error, onRetry }: HabilidadesProps) {
+  const categories = groupSkillsByCategory(skills)
+
   return (
     <section id="habilidades" className="section-pad" aria-labelledby="skills-title">
       <div className="container">
         <SectionReveal>
           <SectionHeading
             eyebrow="02 / Habilidades"
-            title="Herramientas para convertir ideas en experiencias."
-            description="Las habilidades se mostrarán por categorías, sin porcentajes inventados ni niveles difíciles de justificar."
+            title="Tecnologías y herramientas"
+            description="Conocimientos organizados por área, obtenidos directamente desde el portfolio publicado."
             id="skills-title"
           />
         </SectionReveal>
@@ -34,24 +58,11 @@ export function Habilidades({ skills, favoriteTechnologies, status, error, onRet
           onRetry={onRetry}
         >
           <div className="skills-grid">
-            {skills.map((skill) => (
-              <article className="skill-card" key={`${skill.category}-${skill.name}`}>
-                <p>{skill.category}</p>
-                <h3>{skill.name}</h3>
-                {skill.description && <span>{skill.description}</span>}
-              </article>
+            {categories.map(({ category, skills: categorySkills }) => (
+              <SkillCategoryCard key={category} category={category} skills={categorySkills} />
             ))}
           </div>
         </RemoteState>
-
-        <SectionReveal className="favorite-strip">
-          <div>
-            <p className="card-kicker">Tecnologías favoritas</p>
-            <div className="tag-list">
-              {favoriteTechnologies.map((technology) => <span key={technology}>{technology}</span>)}
-            </div>
-          </div>
-        </SectionReveal>
       </div>
     </section>
   )

@@ -3,6 +3,7 @@ export type ProjectStatus = 'Terminado' | 'En desarrollo' | 'Prototipo' | 'Plani
 export interface Skill {
   name: string
   category: string
+  icon?: string
   description?: string
 }
 

@@ -12,7 +12,7 @@ import { Proyectos } from './components/Proyectos'
 import { SobreMi } from './components/SobreMi'
 import { usePortfolioData } from './hooks/usePortfolioData'
 import { useActiveSection } from './hooks/useActiveSection'
-import { education, favoriteTechnologies, profile } from './data/portfolio'
+import { education, profile } from './data/portfolio'
 
 function App() {
   const sectionIds = useMemo(
@@ -47,7 +47,6 @@ function App() {
         <SobreMi profile={profile} />
         <Habilidades
           skills={dynamicData?.skills ?? []}
-          favoriteTechnologies={favoriteTechnologies}
           status={portfolioData.status}
           error={portfolioData.error}
           onRetry={portfolioData.retry}

@@ -1,4 +1,4 @@
-import type { Achievement, Education, Experience, Profile, Project, Skill } from '../types/portfolio'
+import type { Achievement, Education, Experience, Profile, Project } from '../types/portfolio'
 
 export const profile: Profile = {
   name: 'Matías Palomeque',
@@ -15,29 +15,6 @@ export const profile: Profile = {
   email: 'matiaspalomeque2008@gmail.com',
   githubUrl: 'https://github.com/MatiasPalomeque0',
 }
-
-export const skills: Skill[] = [
-  { name: 'HTML', category: 'Frontend' },
-  { name: 'CSS', category: 'Frontend' },
-  { name: 'JavaScript', category: 'Frontend' },
-  { name: 'TypeScript', category: 'Frontend' },
-  { name: 'React', category: 'Frontend' },
-  { name: 'Bootstrap', category: 'Frontend' },
-  { name: 'Node.js', category: 'Backend' },
-  { name: 'Express', category: 'Backend' },
-  { name: 'PHP', category: 'Backend' },
-  { name: 'MySQL', category: 'Bases de datos' },
-  { name: 'SQL', category: 'Bases de datos' },
-  { name: 'Git', category: 'Herramientas' },
-  { name: 'GitHub', category: 'Herramientas' },
-  { name: 'Vite', category: 'Herramientas' },
-  { name: 'VS Code', category: 'Herramientas' },
-  { name: 'Responsive design', category: 'Otros' },
-  { name: 'APIs REST', category: 'Otros' },
-  { name: 'React Router', category: 'Otros' },
-]
-
-export const favoriteTechnologies = ['React', 'TypeScript', 'Node.js', 'MySQL']
 
 export const experiences: Experience[] = [
   {
