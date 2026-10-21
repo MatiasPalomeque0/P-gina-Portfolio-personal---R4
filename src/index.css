@@ -1123,8 +1123,7 @@ h1 {
 
 .site-footer {
   border-top: 1px solid var(--line);
-  /* Permite leer el footer al final sin quedar detrás de los controles fijos. */
-  padding-bottom: calc(7.5rem + env(safe-area-inset-bottom, 0px));
+  padding-bottom: env(safe-area-inset-bottom, 0px);
 }
 
 .contact-grid > *,
@@ -1172,10 +1171,10 @@ h1 {
 
 .footer-row {
   display: grid;
-  grid-template-columns: 1fr auto 1fr;
-  gap: 1rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 1rem 1.5rem;
   align-items: center;
-  min-height: 5rem;
+  padding-block: 1rem;
   color: var(--quiet);
   font-size: 0.76rem;
 }
@@ -1196,6 +1195,9 @@ h1 {
 
 .footer-note {
   text-align: right;
+  /* Deja libre el área de los controles fijos al llegar al final de la página. */
+  padding-right: calc(3.75rem + env(safe-area-inset-right, 0px));
+  overflow-wrap: anywhere;
 }
 
 .reveal {
@@ -1388,16 +1390,12 @@ h1 {
   }
 
   .footer-row {
-    grid-template-columns: 1fr 1fr;
-    padding: 1.25rem 0;
-  }
-
-  .footer-row a {
-    text-align: right;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.5rem;
+    padding-block: 0.875rem;
   }
 
   .footer-note {
-    grid-column: span 2;
     text-align: left;
   }
 }
