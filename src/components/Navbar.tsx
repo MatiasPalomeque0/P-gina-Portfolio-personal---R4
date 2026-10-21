@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 
 interface NavbarProps {
   activeSection: string
@@ -17,6 +17,7 @@ const navItems = [
 
 export function Navbar({ activeSection }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false)
+  const toggleRef = useRef<HTMLButtonElement>(null)
 
   const handleNavigate = () => setIsOpen(false)
 
@@ -32,6 +33,7 @@ export function Navbar({ activeSection }: NavbarProps) {
 
         <button
           className="menu-toggle"
+          ref={toggleRef}
           type="button"
           aria-expanded={isOpen}
           aria-controls="primary-navigation"
@@ -45,6 +47,13 @@ export function Navbar({ activeSection }: NavbarProps) {
           id="primary-navigation"
           className={`primary-nav ${isOpen ? 'is-open' : ''}`}
           aria-label="Navegación principal"
+          onKeyDown={(event) => {
+            // Escape cierra el menú y devuelve el foco al control que lo abrió.
+            if (event.key === 'Escape') {
+              setIsOpen(false)
+              toggleRef.current?.focus()
+            }
+          }}
         >
           {navItems.map((item) => (
             <a

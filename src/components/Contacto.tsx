@@ -30,9 +30,9 @@ export function Contacto({ profile }: ContactoProps) {
             <div className="contact-links">
               {links.map((link) => (
                 <a key={link.label} href={link.href} target={link.href.startsWith('http') ? '_blank' : undefined} rel={link.href.startsWith('http') ? 'noreferrer' : undefined}>
-                  <span>{link.label}</span>
+                  <span className="contact-label">{link.label}</span>
                   <strong>{link.value}</strong>
-                  <span aria-hidden="true">↗</span>
+                  <span className="contact-arrow" aria-hidden="true">↗</span>
                 </a>
               ))}
             </div>

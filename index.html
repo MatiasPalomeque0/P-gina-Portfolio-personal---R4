@@ -3,6 +3,20 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      // Resolver el tema antes de pintar la página evita el destello inicial.
+      ;(() => {
+        let savedTheme
+        try {
+          savedTheme = localStorage.getItem('portfolio-theme')
+        } catch {
+          // El modo privado puede bloquear localStorage; se usa el sistema.
+        }
+        document.documentElement.dataset.theme = savedTheme === 'light' || savedTheme === 'dark'
+          ? savedTheme
+          : window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark'
+      })()
+    </script>
     <meta
       name="description"
       content="Portfolio personal desarrollado con React, TypeScript y Vite."

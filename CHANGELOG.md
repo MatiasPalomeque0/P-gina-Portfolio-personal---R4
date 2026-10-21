@@ -1,5 +1,35 @@
 # Changelog
 
+## Preview responsive y controles — 2026-10-21
+
+### Correcciones
+
+- Confirmado con hit testing y clic real que `Hero::before` interceptaba los enlaces de Inicio. Se desactivó la recepción de eventos del adorno y se posicionó el contenido por encima, conservando las tres anclas nativas.
+- Ajustada la separación de las anclas respecto del Navbar y restauración única del hash inicial después de cargar los datos, también al recargar un enlace directo.
+- Contacto: columnas flexibles, `min-width: 0`, `overflow-wrap: anywhere`, etiqueta sobre el valor en móvil y correo de 16 px sin recortes.
+- Eliminados el ancho mínimo del body que desbordaba al incluir la barra de scroll y `overflow-x: hidden`. El layout se valida sin ocultar el desborde.
+- Menú móvil hasta 980 px; cerrado queda fuera de la navegación por teclado. Escape cierra el menú y restaura el foco. Se conserva su funcionalidad original.
+
+### Controles flotantes
+
+- Nuevo componente reutilizable `FloatingControls.tsx`, con iconos SVG, botones de 48 px, `aria-label`, foco visible, teclado, toque y áreas seguras.
+- Tema claro/oscuro con variables CSS, inicialización previa al primer render, preferencia del sistema y persistencia en `localStorage`. Alternativa de sesión si el almacenamiento está bloqueado.
+- Volver al inicio visible después de 400 px de scroll; desplazamiento suave que respeta movimiento reducido. Limpieza de listeners al desmontar.
+- Espacio al final del footer para poder leer su contenido sin quedar detrás de los controles. Ajuste leve del texto secundario oscuro para mejorar el contraste.
+
+### Validación local
+
+- TypeScript, ESLint y build: correctos. `npm audit` y `npm audit --omit=dev`: 0 vulnerabilidades.
+- Playwright/Edge: 320, 360, 375, 390 y 768 px con toque emulado y teclado; 1024 y 1920 px con mouse y teclado.
+- Los tres enlaces del Hero y las ocho anclas funcionaron en todos los tamaños, con los destinos debajo del Navbar. Sin desborde horizontal ni correo recortado en claro u oscuro.
+- Tema del sistema claro/oscuro, cambio, persistencia al recargar (incluidos tres primeros fotogramas), movimiento reducido y almacenamiento bloqueado: correctos.
+- Menú, Escape, foco, controles de 48 px, Volver arriba y animaciones: correctos. Sin errores de consola.
+- Supabase real, en todos los tamaños: 3 proyectos, 15 relaciones con tecnologías (5 por proyecto), 18 habilidades, 3 experiencias y 3 logros. Cliente, servicios, SQL, datos y RLS conservados.
+- Build servido con `vite preview`, ancla inicial de Contacto, apertura de GitHub y cuatro peticiones GET sin duplicados: correctos. Sin errores de JavaScript.
+- Respaldo anterior: rama local `backup/pre-responsive-2026-10-21`, commit `e912ed5`. Publicación limitada a `preview/portfolio-supabase`.
+- Pendiente de hardware: Safari/iOS y Android físicos; los toques se verificaron en emulación Chromium.
+- La comprobación visual remota requiere acceso a la sesión protegida de Vercel. El navegador automatizado redirige a Login; se distingue del resultado de las pruebas locales y del estado del build remoto.
+
 ## [Unreleased] — 2026-10-21
 
 ### Seguridad y dependencias

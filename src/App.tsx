@@ -1,8 +1,9 @@
-import { useMemo } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import { Contacto } from './components/Contacto'
 import { Educacion } from './components/Educacion'
 import { Experiencia } from './components/Experiencia'
 import { Footer } from './components/Footer'
+import { FloatingControls } from './components/FloatingControls'
 import { Habilidades } from './components/Habilidades'
 import { Hero } from './components/Hero'
 import { Logros } from './components/Logros'
@@ -21,6 +22,21 @@ function App() {
   const activeSection = useActiveSection(sectionIds)
   const portfolioData = usePortfolioData()
   const dynamicData = portfolioData.data
+  const initialAnchor = useRef(window.location.hash)
+  const anchorRestored = useRef(false)
+
+  useEffect(() => {
+    // React monta los destinos después de que el navegador procesa el hash.
+    // Esperar los datos evita desplazar a una posición que luego cambie de altura.
+    if (portfolioData.status === 'loading' || anchorRestored.current || window.location.hash !== initialAnchor.current) return
+    const target = document.getElementById(initialAnchor.current.slice(1))
+    if (!target) return
+    const frame = window.requestAnimationFrame(() => {
+      target.scrollIntoView({ behavior: 'instant', block: 'start' })
+      anchorRestored.current = true
+    })
+    return () => window.cancelAnimationFrame(frame)
+  }, [portfolioData.status])
 
   return (
     <div className="site-shell">
@@ -58,6 +74,7 @@ function App() {
         <Contacto profile={profile} />
       </main>
       <Footer profile={profile} />
+      <FloatingControls />
     </div>
   )
 }
