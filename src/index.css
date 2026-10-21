@@ -155,34 +155,18 @@ button {
   min-height: 4.7rem;
   align-items: center;
   justify-content: space-between;
-  gap: 2rem;
+  gap: 1rem;
 }
 
 .brand {
   display: inline-flex;
   align-items: center;
-  gap: 0.65rem;
   color: var(--text);
   font-size: 1.05rem;
   font-weight: 800;
   letter-spacing: -0.04em;
+  white-space: nowrap;
   text-decoration: none;
-}
-
-.brand-mark {
-  display: grid;
-  width: 2rem;
-  height: 2rem;
-  place-items: center;
-  color: var(--accent-ink);
-  background: var(--accent);
-  border-radius: 0.5rem;
-  font-size: 0.9rem;
-  font-weight: 900;
-}
-
-.brand-dot {
-  color: var(--accent);
 }
 
 .primary-nav {
@@ -1289,6 +1273,15 @@ h1 {
 @media (max-width: 740px) {
   .container {
     width: min(calc(100% - 2rem), var(--max-width));
+  }
+
+  .nav-shell {
+    gap: 0.5rem;
+  }
+
+  .brand {
+    font-size: clamp(0.75rem, 4.1vw, 1rem);
+    letter-spacing: -0.035em;
   }
 
   .section-pad {

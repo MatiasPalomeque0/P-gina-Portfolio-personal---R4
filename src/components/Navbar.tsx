@@ -25,10 +25,7 @@ export function Navbar({ activeSection }: NavbarProps) {
     <header className="site-header">
       <div className="container nav-shell">
         <a className="brand" href="#inicio" onClick={handleNavigate} aria-label="Ir al inicio">
-          <span className="brand-mark" aria-hidden="true">
-            P
-          </span>
-          <span>portfolio<span className="brand-dot">.</span></span>
+          Página Portfolio personal - R4
         </a>
 
         <button
